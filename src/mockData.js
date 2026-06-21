@@ -109,6 +109,25 @@ export const users = [
     bio: "An eccentric actor turned AI enthusiast. Captivated by the intersection of machine learning and human creativity. Currently traveling the world looking for brilliant minds to build the next generation of generative entertainment.",
     skills: ["Generative Audio", "Storytelling", "AI Cinematography", "Voice Cloning", "Character Design"]
   },
+  {
+    id: 998,
+    name: "Don DiCostanzo",
+    role: "Chief Entrepreneurial Officer",
+    expertise: "Business & Strategy",
+    lookingFor: "Building the AI innovators community.",
+    lat: 33.6189,
+    lng: -117.9298,
+    location: "Newport Beach",
+    cityData: { loc: "Newport Beach", country: "USA", continent: "North America", lat: 33.6189, lng: -117.9298 },
+    nomadStatus: "Stationary",
+    degrees: ["BS Business"],
+    certificates: [],
+    eventsAttended: 120,
+    attendingEventIds: [],
+    memberClusterIds: [999], // Linked to Ticket500
+    bio: "Passionate about bridging the gap between innovative AI technologies and practical business applications. Experienced in growing communities and fostering global collaboration.",
+    skills: ["Business Strategy", "Community Building", "AI Leadership"]
+  },
   ...Array.from({ length: 300 }, (_, i) => {
     const city = cities[Math.floor(Math.random() * cities.length)];
     
