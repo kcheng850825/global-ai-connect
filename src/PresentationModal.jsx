@@ -29,14 +29,14 @@ export default function PresentationModal({ onClose, onStartDemo }) {
           <div style={{ flex: 1, padding: '40px', overflowY: 'auto' }}>
             {activeTab === 'problem' && (
               <div className="animate-fade-in">
-                <h3 style={{ fontSize: '2.2rem', marginBottom: '20px', color: '#ef4444' }}>The Fragmentation of AI Talent</h3>
+                <h3 style={{ fontSize: '2.2rem', marginBottom: '20px', color: '#ef4444' }}>The AI Talent Gap</h3>
                 <p style={{ fontSize: '1.3rem', lineHeight: '1.6', color: 'var(--text-muted)' }}>
-                  The global AI ecosystem is rapidly expanding, but talent remains highly siloed. Brilliant researchers, engineers, and founders are disconnected across geographical boundaries and niche sub-fields.
+                  The AI ecosystem is booming, but the community is highly disconnected.
                 </p>
                 <ul style={{ marginTop: '20px', fontSize: '1.25rem', lineHeight: '1.6', color: 'var(--text-muted)', paddingLeft: '20px' }}>
-                  <li style={{ marginBottom: '15px' }}><strong>Geographical Silos:</strong> Innovations in Bangalore or Berlin often fail to cross-pollinate with teams in San Francisco or New York.</li>
-                  <li style={{ marginBottom: '15px' }}><strong>Keyword Matching is Dead:</strong> Traditional hiring and networking platforms rely on basic keyword matching, completely missing the nuanced synergy required for cutting-edge AI teams.</li>
-                  <li style={{ marginBottom: '15px' }}><strong>Hidden Communities:</strong> Thousands of local AI hubs and meetups exist, but are entirely undiscoverable to the broader global community.</li>
+                  <li style={{ marginBottom: '15px' }}><strong>Geographical Silos:</strong> Global innovators struggle to collaborate across borders.</li>
+                  <li style={{ marginBottom: '15px' }}><strong>Outdated Networking:</strong> Traditional platforms rely on basic keywords, completely missing true technical synergy.</li>
+                  <li style={{ marginBottom: '15px' }}><strong>Hidden Hubs:</strong> Local meetups and micro-communities remain invisible to the broader world.</li>
                 </ul>
               </div>
             )}
@@ -45,18 +45,18 @@ export default function PresentationModal({ onClose, onStartDemo }) {
               <div className="animate-fade-in">
                 <h3 style={{ fontSize: '2.2rem', marginBottom: '20px', color: 'var(--accent-cyan)' }}>Global AI Connect</h3>
                 <p style={{ fontSize: '1.3rem', lineHeight: '1.6', color: 'var(--text-muted)' }}>
-                  Global AI Connect is the premier platform designed to unify the world's AI ecosystem through intelligent, context-aware matchmaking and global hub aggregation.
+                  We unite the world's AI ecosystem through intelligent matchmaking and global discovery.
                 </p>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginTop: '30px' }}>
                   <div style={{ background: 'rgba(0,0,0,0.3)', padding: '20px', borderRadius: '12px', borderLeft: '3px solid var(--accent-cyan)' }}>
                     <Lightbulb size={24} color="var(--accent-cyan)" style={{ marginBottom: '10px' }} />
-                    <h4 style={{ fontSize: '1.3rem', marginBottom: '10px' }}>GenAI Synergy Matching</h4>
-                    <p style={{ fontSize: '1.1rem', lineHeight: '1.5', color: 'var(--text-muted)' }}>We look past keywords. Our LLM-powered engine analyzes research papers, side projects, and stated goals to find true synergistic partnerships.</p>
+                    <h4 style={{ fontSize: '1.3rem', marginBottom: '10px' }}>AI Synergy Matching</h4>
+                    <p style={{ fontSize: '1.1rem', lineHeight: '1.5', color: 'var(--text-muted)' }}>Our LLM analyzes deep context—like projects and goals—to find your perfect co-founder or technical partner.</p>
                   </div>
                   <div style={{ background: 'rgba(0,0,0,0.3)', padding: '20px', borderRadius: '12px', borderLeft: '3px solid var(--accent-purple)' }}>
                     <Globe size={24} color="var(--accent-purple)" style={{ marginBottom: '10px' }} />
-                    <h4 style={{ fontSize: '1.3rem', marginBottom: '10px' }}>Hub Discovery</h4>
-                    <p style={{ fontSize: '1.1rem', lineHeight: '1.5', color: 'var(--text-muted)' }}>We map out the thousands of micro-communities, labs, and meetups happening globally, breaking down geographic barriers.</p>
+                    <h4 style={{ fontSize: '1.3rem', marginBottom: '10px' }}>Global Hub Discovery</h4>
+                    <p style={{ fontSize: '1.1rem', lineHeight: '1.5', color: 'var(--text-muted)' }}>Easily discover and connect with local AI communities, labs, and events anywhere in the world.</p>
                   </div>
                 </div>
               </div>
