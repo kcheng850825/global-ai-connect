@@ -9,25 +9,33 @@ export default function Profile() {
   const [linkedinUrl, setLinkedinUrl] = useState('');
   const [lookingFor, setLookingFor] = useState('');
   const [isExtracting, setIsExtracting] = useState(false);
-  const [extractionResult, setExtractionResult] = useState(null);
+  
+  const [myProfile, setMyProfile] = useState({
+    name: "Don DiCostanzo",
+    role: "Chief Entrepreneurial Officer",
+    location: "Newport Beach, CA",
+    expertise: "Business & Strategy",
+    bio: "Passionate about bridging the gap between innovative AI technologies and practical business applications. Experienced in growing communities and fostering global collaboration.",
+    skills: "Business Strategy, Community Building, AI Leadership",
+    lookingFor: "Building the AI innovators community."
+  });
 
   const handleExtraction = () => {
     setIsExtracting(true);
-    setExtractionResult(null);
 
     setTimeout(() => {
-      setExtractionResult({
-        name: "Demo User",
-        role: "Senior AI Engineer",
-        expertise: "Generative AI, Large Language Models, Multi-Agent Systems",
-        location: "San Francisco, CA",
-        nomadStatus: "Stationary",
-        lookingFor: lookingFor || "Looking to co-found a cutting-edge GenAI startup focusing on agentic workflows and automated reasoning.",
-        degrees: ["MS Artificial Intelligence", "BS Computer Science (Honors)"],
-        certificates: ["AWS Certified Machine Learning – Specialty", "DeepLearning.AI TensorFlow Developer"],
-        inferredSynergies: ["MLOps Infrastructure", "Product Strategy", "Research & Development"]
+      setMyProfile({
+        name: "Don DiCostanzo",
+        role: "Chief Entrepreneurial Officer",
+        location: "Newport Beach, CA",
+        expertise: "Business & Strategy, Generative AI",
+        bio: "An AI-focused entrepreneur and community builder looking to leverage new extraction techniques for better talent matching. Profile auto-generated from recent context.",
+        skills: "Business Strategy, Generative AI, Product Strategy",
+        lookingFor: lookingFor || "Building the AI innovators community."
       });
       setIsExtracting(false);
+      setActiveTab('view');
+      alert("Profile successfully extracted and updated!");
     }, 1500);
   };
 
@@ -117,21 +125,45 @@ export default function Profile() {
           <button className="btn hover-glow" onClick={handleExtraction} disabled={isExtracting} style={{ alignSelf: 'flex-start' }}>
             {isExtracting ? 'Extracting via AI...' : <><Sparkles size={18} /> Run GenAI Extraction</>}
           </button>
-
-          {extractionResult && (
-            <div style={{ marginTop: '20px', padding: '20px', background: 'rgba(0,0,0,0.3)', borderRadius: '8px', border: '1px solid var(--accent-cyan)' }}>
-              <h3 style={{ marginBottom: '15px', color: 'var(--accent-cyan)' }}>Extracted Candidate Profile JSON</h3>
-              <pre style={{ whiteSpace: 'pre-wrap', fontSize: '0.85rem' }}>
-                {JSON.stringify(extractionResult, null, 2)}
-              </pre>
-            </div>
-          )}
         </div>
       )}
 
       {activeTab === 'view' && (
-        <div style={{ color: 'var(--text-muted)' }}>
-          <p>Your current public profile will appear here. Use the GenAI Extraction tab to update it from your resume or LinkedIn!</p>
+        <div className="glass-panel animate-fade-in" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <h3 style={{ color: 'var(--accent-cyan)' }}>Public Profile Preview</h3>
+          
+          <div>
+            <label style={{ color: 'var(--text-muted)', marginBottom: '8px', display: 'block' }}>Full Name</label>
+            <input type="text" value={myProfile.name} onChange={e => setMyProfile({...myProfile, name: e.target.value})} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--panel-border)', background: 'rgba(0,0,0,0.3)', color: 'white', outline: 'none' }} />
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+            <div>
+              <label style={{ color: 'var(--text-muted)', marginBottom: '8px', display: 'block' }}>Role</label>
+              <input type="text" value={myProfile.role} onChange={e => setMyProfile({...myProfile, role: e.target.value})} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--panel-border)', background: 'rgba(0,0,0,0.3)', color: 'white', outline: 'none' }} />
+            </div>
+            <div>
+              <label style={{ color: 'var(--text-muted)', marginBottom: '8px', display: 'block' }}>Location</label>
+              <input type="text" value={myProfile.location} onChange={e => setMyProfile({...myProfile, location: e.target.value})} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--panel-border)', background: 'rgba(0,0,0,0.3)', color: 'white', outline: 'none' }} />
+            </div>
+          </div>
+
+          <div>
+            <label style={{ color: 'var(--text-muted)', marginBottom: '8px', display: 'block' }}>Expertise (Comma separated)</label>
+            <input type="text" value={myProfile.expertise} onChange={e => setMyProfile({...myProfile, expertise: e.target.value})} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--panel-border)', background: 'rgba(0,0,0,0.3)', color: 'white', outline: 'none' }} />
+          </div>
+          
+          <div>
+            <label style={{ color: 'var(--text-muted)', marginBottom: '8px', display: 'block' }}>Skills</label>
+            <input type="text" value={myProfile.skills} onChange={e => setMyProfile({...myProfile, skills: e.target.value})} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--panel-border)', background: 'rgba(0,0,0,0.3)', color: 'white', outline: 'none' }} />
+          </div>
+
+          <div>
+            <label style={{ color: 'var(--text-muted)', marginBottom: '8px', display: 'block' }}>Quick Blurb / Bio</label>
+            <textarea rows="4" value={myProfile.bio} onChange={e => setMyProfile({...myProfile, bio: e.target.value})} style={{ width: '100%', padding: '15px', borderRadius: '8px', border: '1px solid var(--panel-border)', background: 'rgba(0,0,0,0.3)', color: 'white', outline: 'none', resize: 'vertical' }} />
+          </div>
+
+          <button className="btn hover-glow" onClick={() => alert('Profile saved successfully!')} style={{ alignSelf: 'flex-start' }}>Save Changes</button>
         </div>
       )}
     </div>

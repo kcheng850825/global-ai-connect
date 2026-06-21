@@ -46,6 +46,8 @@ export default function MapDashboard() {
   const [showEvents, setShowEvents] = useState(true);
   const [showPeople, setShowPeople] = useState(true);
   
+  const [listTab, setListTab] = useState('events'); // 'events', 'hubs', 'people'
+  
   const [activeModal, setActiveModal] = useState(null);
 
   const today = new Date('2026-06-20');
@@ -141,9 +143,24 @@ export default function MapDashboard() {
 
   const listContent = (
     <div style={{ height: '100%', width: '100%', overflowY: 'auto', padding: '40px', background: 'transparent' }}>
-      <h2 className="text-gradient mobile-h1" style={{ fontSize: '2.5rem', marginBottom: '30px', fontWeight: '800' }}>Directory Explorer</h2>
+      <h2 className="text-gradient mobile-h1" style={{ fontSize: '2.5rem', marginBottom: '20px', fontWeight: '800' }}>Directory Explorer</h2>
       
-      {showEvents && (
+      <div style={{ display: 'flex', gap: '15px', marginBottom: '30px', borderBottom: '1px solid var(--panel-border)', paddingBottom: '15px' }}>
+        <button 
+          onClick={() => setListTab('events')}
+          style={{ background: 'transparent', border: 'none', color: listTab === 'events' ? '#ef4444' : 'var(--text-muted)', fontSize: '1.1rem', fontWeight: listTab === 'events' ? 'bold' : 'normal', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
+        ><Calendar size={18} /> Events</button>
+        <button 
+          onClick={() => setListTab('hubs')}
+          style={{ background: 'transparent', border: 'none', color: listTab === 'hubs' ? '#3b82f6' : 'var(--text-muted)', fontSize: '1.1rem', fontWeight: listTab === 'hubs' ? 'bold' : 'normal', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
+        ><Globe size={18} /> Hubs</button>
+        <button 
+          onClick={() => setListTab('people')}
+          style={{ background: 'transparent', border: 'none', color: listTab === 'people' ? '#eab308' : 'var(--text-muted)', fontSize: '1.1rem', fontWeight: listTab === 'people' ? 'bold' : 'normal', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
+        ><User size={18} /> Profiles</button>
+      </div>
+
+      {listTab === 'events' && showEvents && (
         <div style={{ marginBottom: '40px' }}>
           <h3 style={{ borderBottom: '1px solid rgba(239, 68, 68, 0.3)', paddingBottom: '12px', marginBottom: '20px', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '10px' }}>
             <Calendar size={20} /> Upcoming Events
@@ -160,7 +177,7 @@ export default function MapDashboard() {
         </div>
       )}
 
-      {showGroups && (
+      {listTab === 'hubs' && showGroups && (
         <div style={{ marginBottom: '40px' }}>
           <h3 style={{ borderBottom: '1px solid rgba(59, 130, 246, 0.3)', paddingBottom: '12px', marginBottom: '20px', color: '#3b82f6', display: 'flex', alignItems: 'center', gap: '10px' }}>
             <Globe size={20} /> Active Hubs
@@ -177,7 +194,7 @@ export default function MapDashboard() {
         </div>
       )}
 
-      {showPeople && (
+      {listTab === 'people' && showPeople && (
         <div>
           <h3 style={{ borderBottom: '1px solid rgba(234, 179, 8, 0.3)', paddingBottom: '12px', marginBottom: '20px', color: '#eab308', display: 'flex', alignItems: 'center', gap: '10px' }}>
             <User size={20} /> Elite Talent
