@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Sparkles, Upload } from 'lucide-react';
+import { User, Sparkles, Upload, X } from 'lucide-react';
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState('extract'); // 'view' or 'extract'
@@ -11,27 +11,29 @@ export default function Profile() {
   const [isExtracting, setIsExtracting] = useState(false);
   
   const [myProfile, setMyProfile] = useState({
-    name: "Don DiCostanzo",
-    role: "Chief Entrepreneurial Officer",
-    location: "Newport Beach, CA",
-    expertise: "Business & Strategy",
-    bio: "Passionate about bridging the gap between innovative AI technologies and practical business applications. Experienced in growing communities and fostering global collaboration.",
-    skills: "Business Strategy, Community Building, AI Leadership",
-    lookingFor: "Building the AI innovators community."
+    name: "Johnny Depp",
+    role: "AI Creative Director",
+    location: "Los Angeles, CA",
+    expertise: "Generative Audio & Video",
+    bio: "An eccentric actor turned AI enthusiast. Captivated by the intersection of machine learning and human creativity. Currently traveling the world looking for brilliant minds to build the next generation of generative entertainment.",
+    skills: ["Generative Audio", "Storytelling", "AI Cinematography", "Voice Cloning", "Character Design"],
+    lookingFor: "Exploring how AI can revolutionize the filmmaking process and storytelling."
   });
+  
+  const [newSkill, setNewSkill] = useState('');
 
   const handleExtraction = () => {
     setIsExtracting(true);
 
     setTimeout(() => {
       setMyProfile({
-        name: "Don DiCostanzo",
-        role: "Chief Entrepreneurial Officer",
-        location: "Newport Beach, CA",
-        expertise: "Business & Strategy, Generative AI",
-        bio: "An AI-focused entrepreneur and community builder looking to leverage new extraction techniques for better talent matching. Profile auto-generated from recent context.",
-        skills: "Business Strategy, Generative AI, Product Strategy",
-        lookingFor: lookingFor || "Building the AI innovators community."
+        name: "Johnny Depp",
+        role: "AI Creative Director",
+        location: "Los Angeles, CA",
+        expertise: "Generative Audio & Video, Multi-Modal AI",
+        bio: "An eccentric actor turned AI enthusiast. Captivated by the intersection of machine learning and human creativity. Profile auto-generated from recent context.",
+        skills: ["Generative Audio", "Storytelling", "AI Cinematography", "Multi-Modal Models"],
+        lookingFor: lookingFor || "Exploring how AI can revolutionize the filmmaking process and storytelling."
       });
       setIsExtracting(false);
       setActiveTab('view');
@@ -45,6 +47,21 @@ export default function Profile() {
       setRawText((prev) => prev + `\n[Extracted from uploaded file: ${file.name}]\nI have a BS in Computer Science from Stanford and an AWS Machine Learning certification. I work as an MLOps Engineer in New York.`);
       alert("File uploaded. (Simulated text extraction for PDF applied).");
     }
+  };
+
+  const handleAddSkill = (e) => {
+    if (e.key === 'Enter' || e.key === ',') {
+      e.preventDefault();
+      const trimmed = newSkill.trim();
+      if (trimmed && myProfile.skills.length < 50 && !myProfile.skills.includes(trimmed)) {
+        setMyProfile({ ...myProfile, skills: [...myProfile.skills, trimmed] });
+      }
+      setNewSkill('');
+    }
+  };
+
+  const handleRemoveSkill = (skillToRemove) => {
+    setMyProfile({ ...myProfile, skills: myProfile.skills.filter(s => s !== skillToRemove) });
   };
 
   return (
@@ -154,8 +171,28 @@ export default function Profile() {
           </div>
           
           <div>
-            <label style={{ color: 'var(--text-muted)', marginBottom: '8px', display: 'block' }}>Skills</label>
-            <input type="text" value={myProfile.skills} onChange={e => setMyProfile({...myProfile, skills: e.target.value})} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--panel-border)', background: 'rgba(0,0,0,0.3)', color: 'white', outline: 'none' }} />
+            <label style={{ color: 'var(--text-muted)', marginBottom: '8px', display: 'flex', justifyContent: 'space-between' }}>
+              <span>Skills & Tags</span>
+              <span style={{ fontSize: '0.85rem' }}>{myProfile.skills.length}/50</span>
+            </label>
+            <div style={{ padding: '12px', borderRadius: '8px', border: '1px solid var(--panel-border)', background: 'rgba(0,0,0,0.3)', display: 'flex', flexWrap: 'wrap', gap: '8px', minHeight: '50px' }}>
+              {myProfile.skills.map((skill, idx) => (
+                <div key={idx} style={{ background: 'rgba(0, 240, 255, 0.15)', color: 'var(--accent-cyan)', padding: '5px 10px', borderRadius: '20px', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  {skill}
+                  <X size={14} style={{ cursor: 'pointer' }} onClick={() => handleRemoveSkill(skill)} />
+                </div>
+              ))}
+              {myProfile.skills.length < 50 && (
+                <input 
+                  type="text" 
+                  placeholder="Type a skill and press Enter..." 
+                  value={newSkill}
+                  onChange={e => setNewSkill(e.target.value)}
+                  onKeyDown={handleAddSkill}
+                  style={{ flex: 1, background: 'transparent', border: 'none', color: 'white', outline: 'none', minWidth: '150px' }} 
+                />
+              )}
+            </div>
           </div>
 
           <div>
