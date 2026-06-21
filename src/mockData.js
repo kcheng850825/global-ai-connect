@@ -58,8 +58,8 @@ export const clusters = [
       id: i + 1,
       name: `${groupPrefix[Math.floor(Math.random() * groupPrefix.length)]} ${groupSuffix[Math.floor(Math.random() * groupSuffix.length)]}`,
       topic: topics[Math.floor(Math.random() * topics.length)],
-      lat: city.lat + (Math.random() * 0.1 - 0.05),
-      lng: city.lng + (Math.random() * 0.1 - 0.05),
+      lat: city.lat + (Math.random() * 0.5 - 0.25),
+      lng: city.lng + (Math.random() * 0.5 - 0.25),
       members: Math.floor(Math.random() * 1000) + 50,
       cityData: city
     };
@@ -81,8 +81,8 @@ export const events = Array.from({ length: 300 }, (_, i) => {
     title: `${city.loc} ${topics[Math.floor(Math.random() * topics.length)]} ${types[Math.floor(Math.random() * types.length)]}`,
     date: eventDate.toISOString().split('T')[0],
     type: types[Math.floor(Math.random() * types.length)],
-    lat: city.lat + (Math.random() * 0.1 - 0.05),
-    lng: city.lng + (Math.random() * 0.1 - 0.05),
+    lat: city.lat + (Math.random() * 0.5 - 0.25),
+    lng: city.lng + (Math.random() * 0.5 - 0.25),
     location: city.loc,
     cityData: city,
     hostClusterId: hostCluster.id
@@ -130,8 +130,8 @@ export const users = [
       role: roles[Math.floor(Math.random() * roles.length)],
       expertise: expertiseList[Math.floor(Math.random() * expertiseList.length)],
       lookingFor: lookingForList[Math.floor(Math.random() * lookingForList.length)],
-      lat: city.lat + (Math.random() * 0.1 - 0.05),
-      lng: city.lng + (Math.random() * 0.1 - 0.05),
+      lat: city.lat + (Math.random() * 0.5 - 0.25),
+      lng: city.lng + (Math.random() * 0.5 - 0.25),
       location: city.loc,
       cityData: city,
       nomadStatus: Math.random() > 0.8 ? "Digital Nomad" : "Stationary",
