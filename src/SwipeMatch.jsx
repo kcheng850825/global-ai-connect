@@ -8,6 +8,10 @@ export default function SwipeMatch() {
   const [matchQueue, setMatchQueue] = useState(() => users.filter(u => u.id !== 999).slice(0, 20));
   const [lastSwipedUser, setLastSwipedUser] = useState(null);
   const [activeModal, setActiveModal] = useState(null);
+  const [matchedProfiles, setMatchedProfiles] = useState(matches);
+  const [isMatching, setIsMatching] = useState(false);
+  const [matchResult, setMatchResult] = useState('');
+  const [activeTab, setActiveTab] = useState('discover');
 
   const onSwipe = (direction, user) => {
     if (direction === 'right') {
@@ -32,8 +36,17 @@ export default function SwipeMatch() {
     setMatchResult('');
     
     setTimeout(() => {
-      setMatchResult(`Synergy Found! Your background perfectly complements ${user.name}'s focus on ${user.expertise}. \nAI Proposal: Collaborate on ${user.expertise} pipelines in ${user.location}.`);
+      const synergyText = `Synergy Found! Your background perfectly complements ${user.name}'s focus on ${user.expertise}. \nAI Proposal: Collaborate on ${user.expertise} pipelines in ${user.location}.`;
+      setMatchResult(synergyText);
       setIsMatching(false);
+
+      // Add to matches list
+      setMatchedProfiles(prev => [{
+        id: `new-${Date.now()}`,
+        user: user,
+        date: 'Just now',
+        synergy: synergyText
+      }, ...prev]);
     }, 800);
   };
 
@@ -144,7 +157,7 @@ export default function SwipeMatch() {
 
       {activeTab === 'matches' && (
         <div className="animate-fade-in" style={{ width: '100%', maxWidth: '800px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          {matches.map(match => (
+          {matchedProfiles.map(match => (
             <div key={match.id} className="glass-panel hover-glow" style={{ padding: '24px', borderLeft: '4px solid var(--accent-purple)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
                 <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
