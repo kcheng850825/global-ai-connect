@@ -197,7 +197,7 @@ export default function MapDashboard() {
   );
 
   return (
-    <div style={{ flex: 1, position: 'relative', display: 'flex' }}>
+    <div id="tour-map" style={{ flex: 1, position: 'relative', display: 'flex' }}>
       {viewMode === 'map' ? mapContent : listContent}
       
       {activeModal?.type === 'user' && <UserModal user={activeModal.data} onClose={handleCloseModal} onClusterClick={handleClusterClick} onEventClick={handleEventClick} />}
@@ -229,7 +229,7 @@ export default function MapDashboard() {
 
         {!isMinimized && (
           <div style={{ padding: '0 24px 24px 24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div id="tour-global-search" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <div style={{ position: 'relative' }}>
                 <Search size={16} style={{ position: 'absolute', top: '50%', left: '12px', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
                 <input 
@@ -242,7 +242,7 @@ export default function MapDashboard() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', background: 'rgba(0,0,0,0.6)', borderRadius: '12px', padding: '6px', border: '1px solid rgba(255,255,255,0.05)' }}>
+            <div id="tour-directory" style={{ display: 'flex', background: 'rgba(0,0,0,0.6)', borderRadius: '12px', padding: '6px', border: '1px solid rgba(255,255,255,0.05)' }}>
               <button 
                 style={{ flex: 1, padding: '10px', border: 'none', background: viewMode === 'map' ? 'linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(157, 78, 221, 0.2))' : 'transparent', color: viewMode === 'map' ? '#fff' : 'var(--text-muted)', borderRadius: '8px', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', transition: 'all 0.3s', fontWeight: '600' }}
                 onClick={() => setViewMode('map')}
@@ -277,7 +277,7 @@ export default function MapDashboard() {
               <label style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px' }}>
                 <MapPin size={16} /> Location Filters
               </label>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <div id="tour-filters" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <select 
                   multiple
                   value={selectedContinents} 
@@ -311,7 +311,7 @@ export default function MapDashboard() {
             </div>
 
             {showEvents && (
-              <div>
+              <div id="tour-events">
                 <label style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '1px' }}>
                   <Calendar size={16} /> Event Timeline
                 </label>

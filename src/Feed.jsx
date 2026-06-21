@@ -10,7 +10,7 @@ export default function Feed() {
         <p style={{ color: 'var(--text-muted)' }}>The latest updates and meetups from the AI community.</p>
       </div>
 
-      <div style={{ display: 'grid', gap: '20px', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
+      <div id="tour-feed" style={{ display: 'grid', gap: '20px', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
         {news.map(item => (
           <div key={item.id} className="glass-panel hover-glow" style={{ padding: '24px', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '15px' }}>

@@ -27,7 +27,7 @@ export default function Login({ onLogin }) {
         <div className="hover-glow-purple" style={{ marginBottom: '24px', padding: '16px', background: 'linear-gradient(135deg, var(--accent-blue), var(--accent-purple))', borderRadius: '24px', boxShadow: 'var(--accent-purple-glow)' }}>
           <Globe size={48} color="white" strokeWidth={1.5} />
         </div>
-        <h1 className="text-gradient" style={{ fontSize: '2.5rem', marginBottom: '12px', textAlign: 'center', fontWeight: '800' }}>Global AI Synergy</h1>
+        <h1 className="text-gradient" style={{ fontSize: '2.5rem', marginBottom: '12px', textAlign: 'center', fontWeight: '800' }}>Global AI Connect</h1>
         <p style={{ color: 'var(--text-muted)', marginBottom: '36px', textAlign: 'center', fontSize: '1.05rem', lineHeight: '1.5' }}>Sign in to connect with the world's most elite AI talent network.</p>
 
         <button 
@@ -67,7 +67,7 @@ export default function Login({ onLogin }) {
             />
           </div>
           <button type="submit" className="btn hover-glow" style={{ width: '100%', display: 'flex', justifyContent: 'center', padding: '16px', marginTop: '10px', fontSize: '1.05rem' }}>
-            Enter Nexus <ArrowRight size={20} style={{ marginLeft: '8px' }} />
+            Enter Connect <ArrowRight size={20} style={{ marginLeft: '8px' }} />
           </button>
         </form>
       </div>

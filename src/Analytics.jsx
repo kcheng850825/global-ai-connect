@@ -23,7 +23,7 @@ export default function Analytics() {
         <p style={{ color: 'var(--text-muted)' }}>Automated analysis of global events, meetups, and discussions.</p>
       </div>
 
-      <div style={{ display: 'flex', gap: '20px' }}>
+      <div id="tour-analytics" style={{ display: 'flex', gap: '20px' }}>
         <div className="glass-panel hover-glow" onClick={() => toggleInsight('matched')} style={{ flex: 1, padding: '24px', borderTop: '4px solid var(--accent-cyan)', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <h4 style={{ color: 'var(--text-muted)', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}><Users size={18} /> People Matched</h4>

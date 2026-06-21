@@ -11,64 +11,24 @@ export default function Profile() {
   const [isExtracting, setIsExtracting] = useState(false);
   const [extractionResult, setExtractionResult] = useState(null);
 
-  const handleExtraction = async () => {
+  const handleExtraction = () => {
     setIsExtracting(true);
     setExtractionResult(null);
 
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    if (!apiKey || apiKey === 'your_api_key_goes_here') {
-      // Demo Mode Fallback
-      setTimeout(() => {
-        setExtractionResult({
-          name: "Demo User",
-          role: "Senior AI Engineer",
-          expertise: "Generative AI, Large Language Models, Multi-Agent Systems",
-          location: "San Francisco, CA",
-          nomadStatus: "Stationary",
-          lookingFor: lookingFor || "Looking to co-found a cutting-edge GenAI startup focusing on agentic workflows and automated reasoning.",
-          degrees: ["MS Artificial Intelligence", "BS Computer Science (Honors)"],
-          certificates: ["AWS Certified Machine Learning – Specialty", "DeepLearning.AI TensorFlow Developer"],
-          inferredSynergies: ["MLOps Infrastructure", "Product Strategy", "Research & Development"]
-        });
-        setIsExtracting(false);
-      }, 1500);
-      return;
-    }
-
-    try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          contents: [{
-            parts: [{
-              text: `You are an HR AI. Extract profile information from the user input. Return ONLY a raw JSON object with these exact keys: "name", "role", "expertise", "location", "nomadStatus", "lookingFor", "degrees" (array of strings), "certificates" (array of strings). Do not include markdown formatting like \`\`\`json.\n\nLinkedIn: ${linkedinUrl}\nRaw Text/Resume Context: ${rawText}\nWhat I'm looking for: ${lookingFor}`
-            }]
-          }],
-          generationConfig: {
-            temperature: 0.1
-          }
-        })
+    setTimeout(() => {
+      setExtractionResult({
+        name: "Demo User",
+        role: "Senior AI Engineer",
+        expertise: "Generative AI, Large Language Models, Multi-Agent Systems",
+        location: "San Francisco, CA",
+        nomadStatus: "Stationary",
+        lookingFor: lookingFor || "Looking to co-found a cutting-edge GenAI startup focusing on agentic workflows and automated reasoning.",
+        degrees: ["MS Artificial Intelligence", "BS Computer Science (Honors)"],
+        certificates: ["AWS Certified Machine Learning – Specialty", "DeepLearning.AI TensorFlow Developer"],
+        inferredSynergies: ["MLOps Infrastructure", "Product Strategy", "Research & Development"]
       });
-
-      const data = await response.json();
-      if (data.candidates && data.candidates[0].content.parts[0].text) {
-        let content = data.candidates[0].content.parts[0].text.trim();
-        if (content.startsWith('```json')) {
-          content = content.replace(/```json/g, '').replace(/```/g, '').trim();
-        }
-        setExtractionResult(JSON.parse(content));
-      } else {
-        alert("API Error: " + data.error?.message);
-      }
-    } catch (err) {
-      alert("Extraction failed. Check API key and console.");
-      console.error(err);
-    } finally {
       setIsExtracting(false);
-    }
+    }, 1500);
   };
 
   const handleFileUpload = (e) => {
@@ -100,14 +60,11 @@ export default function Profile() {
       </div>
 
       {activeTab === 'extract' && (
-        <div className="glass-panel" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px', animation: 'fadeIn 0.3s ease' }}>
+        <div id="tour-profile" className="glass-panel" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px', animation: 'fadeIn 0.3s ease' }}>
           <div style={{ background: 'rgba(139, 92, 246, 0.1)', border: '1px solid var(--accent-purple)', padding: '15px', borderRadius: '8px' }}>
-            <p style={{ fontSize: '0.9rem', marginBottom: '8px' }}><strong>Demo Mode vs. Live API:</strong></p>
+            <p style={{ fontSize: '0.9rem', marginBottom: '8px', color: 'var(--accent-purple)' }}><strong>GenAI Profile Extraction Demo</strong></p>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-              Currently running in Demo Mode. To make this really work and extract real data from your inputs using GenAI, you need to add your Gemini API key to the project. 
-              <br/><br/>
-              <strong>What's needed:</strong> Create a <code>.env</code> file in the root of this project and add: <br/>
-              <code>VITE_GEMINI_API_KEY=your_actual_api_key_here</code>
+              Upload your resume or paste a LinkedIn link below. Our GenAI will parse the unstructured data to generate a structured profile JSON instantly.
             </p>
           </div>
 

@@ -7,6 +7,9 @@ import Analytics from './Analytics';
 import Profile from './Profile';
 import SwipeMatch from './SwipeMatch';
 import Login from './Login';
+import PresentationModal from './PresentationModal';
+import GuidedTour from './GuidedTour';
+import { PlayCircle } from 'lucide-react';
 import './index.css';
 
 // Extracted the layout into its own component to keep App.jsx clean
@@ -81,14 +84,43 @@ function AuthenticatedLayout() {
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showPresentation, setShowPresentation] = useState(false);
+  const [showTour, setShowTour] = useState(false);
 
   return (
     <BrowserRouter>
       {isAuthenticated ? (
-        <AuthenticatedLayout />
+        <>
+          <AuthenticatedLayout />
+          
+          <button 
+            id="tour-presentation-btn"
+            onClick={() => setShowPresentation(true)}
+            className="btn hover-glow"
+            style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 9999, display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 20px', borderRadius: '30px', boxShadow: '0 10px 25px rgba(0,0,0,0.5)' }}
+          >
+            <PlayCircle size={20} /> Presentation Mode
+          </button>
+
+          {showPresentation && (
+            <PresentationModal 
+              onClose={() => setShowPresentation(false)} 
+              onStartDemo={() => {
+                setShowPresentation(false);
+                setShowTour(true);
+              }} 
+            />
+          )}
+
+          {showTour && (
+            <GuidedTour onComplete={() => {
+              setShowTour(false);
+              setShowPresentation(true);
+            }} />
+          )}
+        </>
       ) : (
         <Routes>
-          {/* Unauthenticated users always hit the login page */}
           <Route path="*" element={<Login onLogin={() => setIsAuthenticated(true)} />} />
         </Routes>
       )}

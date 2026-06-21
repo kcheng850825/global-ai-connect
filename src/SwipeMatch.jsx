@@ -21,24 +21,15 @@ export default function SwipeMatch() {
     setMatchResult('');
     
     setTimeout(() => {
-      const mockAnalysis = `Synergy Found! \nYour background perfectly complements ${currentUser.name}'s focus on ${currentUser.expertise}. \n\nAI Proposed Collaboration: Building scalable data pipelines for automated ${currentUser.expertise} training in ${currentUser.location}.`;
-      
-      let i = 0;
-      const typeWriter = setInterval(() => {
-        setMatchResult(prev => prev + mockAnalysis.charAt(i));
-        i++;
-        if (i >= mockAnalysis.length) {
-          clearInterval(typeWriter);
-          setIsMatching(false);
-        }
-      }, 15);
+      setMatchResult(`Synergy Found! Your background perfectly complements ${currentUser.name}'s focus on ${currentUser.expertise}. \nAI Proposal: Collaborate on ${currentUser.expertise} pipelines in ${currentUser.location}.`);
+      setIsMatching(false);
     }, 500);
   };
 
   if (!currentUser) return null;
 
   return (
-    <div style={{ padding: '40px', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'transparent', overflowY: 'auto' }}>
+    <div id="tour-swipe-match" style={{ padding: '40px', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'transparent', overflowY: 'auto' }}>
       <h1 className="text-gradient" style={{ fontSize: '3rem', marginBottom: '16px', fontWeight: '800' }}>Find Synergies</h1>
       <p style={{ color: 'var(--text-muted)', marginBottom: '30px', fontSize: '1.1rem', letterSpacing: '0.5px' }}>Discover and connect with elite global AI talent.</p>
 
@@ -59,17 +50,17 @@ export default function SwipeMatch() {
         {/* Decorative background element */}
         <div style={{ position: 'absolute', top: '-10%', left: '-10%', width: '150px', height: '150px', background: 'var(--accent-purple)', filter: 'blur(80px)', opacity: 0.3, zIndex: -1 }}></div>
 
-        <div style={{ width: '120px', height: '120px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--accent-blue), var(--accent-purple))', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '3rem', fontWeight: 'bold', marginBottom: '24px', boxShadow: 'var(--accent-purple-glow)', border: '2px solid rgba(255,255,255,0.1)' }}>
+        <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--accent-blue), var(--accent-purple))', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '2rem', fontWeight: 'bold', marginBottom: '16px', boxShadow: 'var(--accent-purple-glow)', border: '2px solid rgba(255,255,255,0.1)' }}>
           {currentUser.name.charAt(0)}
         </div>
         
-        <h2 style={{ fontSize: '2rem', marginBottom: '8px', fontWeight: '700' }}>{currentUser.name}</h2>
-        <h4 className="text-gradient" style={{ fontSize: '1.1rem', marginBottom: '8px', fontWeight: '600' }}>{currentUser.role}</h4>
-        <p style={{ color: 'var(--text-muted)', marginBottom: '24px', fontSize: '0.95rem' }}>📍 {currentUser.location}</p>
+        <h2 style={{ fontSize: '1.8rem', marginBottom: '4px', fontWeight: '700' }}>{currentUser.name}</h2>
+        <h4 className="text-gradient" style={{ fontSize: '1rem', marginBottom: '4px', fontWeight: '600' }}>{currentUser.role}</h4>
+        <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '0.9rem' }}>📍 {currentUser.location}</p>
         
-        <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', padding: '20px', borderRadius: '16px', width: '100%', marginBottom: '40px', textAlign: 'center', boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)' }}>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px', fontWeight: '600' }}>Primary Expertise</p>
-          <p style={{ fontWeight: '600', fontSize: '1.2rem', color: '#fff' }}>{currentUser.expertise}</p>
+        <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', padding: '16px', borderRadius: '16px', width: '100%', marginBottom: '24px', textAlign: 'center', boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px', fontWeight: '600' }}>Primary Expertise</p>
+          <p style={{ fontWeight: '600', fontSize: '1.1rem', color: '#fff' }}>{currentUser.expertise}</p>
         </div>
 
         <div style={{ display: 'flex', gap: '32px', width: '100%', justifyContent: 'center' }}>
@@ -92,18 +83,18 @@ export default function SwipeMatch() {
         </div>
 
         {(isMatching || matchResult) && (
-          <div className="animate-fade-in" style={{ marginTop: '40px', width: '100%', padding: '24px', background: 'linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(59, 130, 246, 0.1))', border: '1px solid rgba(157, 78, 221, 0.3)', borderRadius: '16px', boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)' }}>
-            <h4 className="text-gradient-purple" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', fontSize: '1.1rem', fontWeight: '700' }}>
+          <div className="animate-fade-in" style={{ marginTop: '24px', width: '100%', padding: '20px', background: 'linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(59, 130, 246, 0.1))', border: '1px solid rgba(157, 78, 221, 0.3)', borderRadius: '16px', boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)' }}>
+            <h4 className="text-gradient-purple" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', fontSize: '1.1rem', fontWeight: '700' }}>
               <Sparkles size={18} color="var(--accent-purple)" /> AI Synergy Analysis
             </h4>
-            <p style={{ fontSize: '1rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', color: 'rgba(255,255,255,0.9)' }}>{matchResult}</p>
+            <p style={{ fontSize: '0.95rem', lineHeight: '1.5', whiteSpace: 'pre-wrap', color: 'rgba(255,255,255,0.9)' }}>{matchResult}</p>
             
             {!isMatching && matchResult && (
-              <div style={{ display: 'flex', gap: '12px', marginTop: '24px' }}>
-                <button className="btn hover-glow-purple" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '14px', borderRadius: '12px' }} onClick={handlePass}>
+              <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
+                <button className="btn hover-glow-purple" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '10px', borderRadius: '12px' }} onClick={handlePass}>
                   Continue to Match
                 </button>
-                <button className="btn-outline" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '14px', borderRadius: '12px', border: '1px solid var(--accent-purple)', color: 'var(--accent-purple)' }} onClick={() => alert('Profile view in development.')}>
+                <button className="btn-outline" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '10px', borderRadius: '12px', border: '1px solid var(--accent-purple)', color: 'var(--accent-purple)' }} onClick={() => alert('Profile view in development.')}>
                   View Profile
                 </button>
               </div>
