@@ -105,9 +105,9 @@ export default function MapDashboard() {
         {showPeople && filteredUsers.map(u => (
           <Marker key={`user-${u.id}`} position={[u.lat, u.lng]} icon={icons.person}>
             <Popup>
-              <div style={{ color: '#000' }}>
+              <div>
                 <h3 style={{ margin: '0 0 5px 0' }}>{u.name}</h3>
-                <p style={{ margin: '0 0 5px 0', fontSize: '13px' }}><strong>Role:</strong> {u.role}</p>
+                <p style={{ margin: '0 0 5px 0', fontSize: '13px', color: 'var(--text-muted)' }}><strong>Role:</strong> {u.role}</p>
                 <button className="btn" style={{ padding: '5px 10px', fontSize: '12px', marginTop: '10px' }} onClick={() => handleUserClick(u)}>View Profile</button>
               </div>
             </Popup>
@@ -117,9 +117,9 @@ export default function MapDashboard() {
         {showGroups && filteredClusters.map(c => (
           <Marker key={`cluster-${c.id}`} position={[c.lat, c.lng]} icon={icons.group}>
             <Popup>
-              <div style={{ color: '#000' }}>
+              <div>
                 <h3 style={{ margin: '0 0 5px 0' }}>{c.name}</h3>
-                <p style={{ margin: '0 0 5px 0', fontSize: '13px' }}><strong>Topic:</strong> {c.topic}</p>
+                <p style={{ margin: '0 0 5px 0', fontSize: '13px', color: 'var(--text-muted)' }}><strong>Topic:</strong> {c.topic}</p>
                 <button className="btn" style={{ padding: '5px 10px', fontSize: '12px', marginTop: '10px' }} onClick={() => handleClusterClick(c)}>View Hub</button>
               </div>
             </Popup>
@@ -129,9 +129,9 @@ export default function MapDashboard() {
         {showEvents && filteredEvents.map(e => (
           <Marker key={`event-${e.id}`} position={[e.lat, e.lng]} icon={icons.event}>
             <Popup>
-              <div style={{ color: '#000' }}>
+              <div>
                 <h3 style={{ margin: '0 0 5px 0' }}>{e.title}</h3>
-                <p style={{ margin: '0 0 5px 0', fontSize: '13px' }}><strong>Date:</strong> {e.date}</p>
+                <p style={{ margin: '0 0 5px 0', fontSize: '13px', color: 'var(--text-muted)' }}><strong>Date:</strong> {e.date}</p>
                 <button className="btn" style={{ padding: '5px 10px', fontSize: '12px', marginTop: '10px' }} onClick={() => handleEventClick(e)}>View Event</button>
               </div>
             </Popup>

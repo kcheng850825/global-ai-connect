@@ -60,6 +60,18 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.leaflet-popup-content-wrapper {
+  background: var(--panel-bg);
+  backdrop-filter: blur(10px);
+  color: var(--text-main);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+}
+
+.leaflet-popup-tip {
+  background: var(--panel-bg);
+}
+
 .text-gradient {
   background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple));
   -webkit-background-clip: text;
