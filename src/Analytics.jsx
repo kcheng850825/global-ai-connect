@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { trendingData, matches, users, events } from './mockData';
 import { TrendingUp, Users, Calendar, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
+import UserModal from './UserModal';
+import EventModal from './EventModal';
 
 export default function Analytics() {
   const currentUser = users[0];
@@ -8,6 +10,7 @@ export default function Analytics() {
   const attendedEventsList = events.filter(e => currentUser.attendingEventIds.includes(e.id));
   
   const [expandedInsight, setExpandedInsight] = useState(null); // 'matched', 'attended', 'nearby'
+  const [activeModal, setActiveModal] = useState(null);
 
   const toggleInsight = (insight) => {
     if (expandedInsight === insight) setExpandedInsight(null);
@@ -57,7 +60,7 @@ export default function Analytics() {
               <h3 style={{ marginBottom: '16px', color: 'var(--accent-cyan)' }}>Your Top Synergies</h3>
               <div style={{ display: 'grid', gap: '12px' }}>
                 {matches.map(m => (
-                  <div key={m.id} style={{ background: 'rgba(0,0,0,0.3)', padding: '12px', borderRadius: '8px', borderLeft: '2px solid var(--accent-cyan)' }}>
+                  <div key={m.id} className="hover-glow" style={{ background: 'rgba(0,0,0,0.3)', padding: '12px', borderRadius: '8px', borderLeft: '2px solid var(--accent-cyan)', cursor: 'pointer' }} onClick={() => setActiveModal({ type: 'user', data: m.user })}>
                     <strong>{m.user.name}</strong> - {m.user.role} in {m.user.location}
                   </div>
                 ))}
@@ -69,7 +72,7 @@ export default function Analytics() {
               <h3 style={{ marginBottom: '16px', color: 'var(--accent-purple)' }}>Events You Attended</h3>
               <div style={{ display: 'grid', gap: '12px' }}>
                 {attendedEventsList.map(e => (
-                  <div key={e.id} style={{ background: 'rgba(0,0,0,0.3)', padding: '12px', borderRadius: '8px', borderLeft: '2px solid var(--accent-purple)' }}>
+                  <div key={e.id} className="hover-glow" style={{ background: 'rgba(0,0,0,0.3)', padding: '12px', borderRadius: '8px', borderLeft: '2px solid var(--accent-purple)', cursor: 'pointer' }} onClick={() => setActiveModal({ type: 'event', data: e })}>
                     <strong>{e.title}</strong> - {e.date} in {e.location}
                   </div>
                 ))}
@@ -82,7 +85,7 @@ export default function Analytics() {
               <h3 style={{ marginBottom: '16px', color: '#10b981' }}>Upcoming Events in {currentUser.cityData.loc}</h3>
               <div style={{ display: 'grid', gap: '12px' }}>
                 {nearbyEventsList.map(e => (
-                  <div key={e.id} style={{ background: 'rgba(0,0,0,0.3)', padding: '12px', borderRadius: '8px', borderLeft: '2px solid #10b981' }}>
+                  <div key={e.id} className="hover-glow" style={{ background: 'rgba(0,0,0,0.3)', padding: '12px', borderRadius: '8px', borderLeft: '2px solid #10b981', cursor: 'pointer' }} onClick={() => setActiveModal({ type: 'event', data: e })}>
                     <strong>{e.title}</strong> - {e.date}
                   </div>
                 ))}
@@ -92,6 +95,9 @@ export default function Analytics() {
           )}
         </div>
       )}
+
+      {activeModal?.type === 'user' && <UserModal user={activeModal.data} onClose={() => setActiveModal(null)} />}
+      {activeModal?.type === 'event' && <EventModal event={activeModal.data} onClose={() => setActiveModal(null)} />}
     </div>
   );
 }

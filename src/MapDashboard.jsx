@@ -93,7 +93,7 @@ export default function MapDashboard() {
 
   const mapContent = (
     <div style={{ height: '100%', width: '100%', position: 'relative' }}>
-      <MapContainer center={mapCenter} zoom={mapZoom} scrollWheelZoom={true} style={{ height: '100%', width: '100%' }}>
+      <MapContainer center={mapCenter} zoom={mapZoom} scrollWheelZoom={true} worldCopyJump={true} style={{ height: '100%', width: '100%' }}>
         <ChangeView center={mapCenter} zoom={mapZoom} />
         <TileLayer
           attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'

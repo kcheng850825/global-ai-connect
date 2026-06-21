@@ -4,7 +4,7 @@
 :root {
   --bg-color: #050505;
   --bg-gradient: radial-gradient(circle at 10% 20%, #111827, #050505 80%);
-  --panel-bg: rgba(15, 20, 30, 0.4);
+  --panel-bg: rgba(15, 20, 30, 0.9);
   --panel-border: rgba(255, 255, 255, 0.05);
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
