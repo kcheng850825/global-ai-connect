@@ -34,7 +34,7 @@ export default function SwipeMatch() {
     setTimeout(() => {
       setMatchResult(`Synergy Found! Your background perfectly complements ${user.name}'s focus on ${user.expertise}. \nAI Proposal: Collaborate on ${user.expertise} pipelines in ${user.location}.`);
       setIsMatching(false);
-    }, 500);
+    }, 800);
   };
 
   const manualSwipe = (direction) => {
@@ -122,17 +122,20 @@ export default function SwipeMatch() {
               <h4 className="text-gradient-purple" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', fontSize: '1.1rem', fontWeight: '700' }}>
                 <Sparkles size={18} color="var(--accent-purple)" /> AI Synergy Analysis
               </h4>
-              <p style={{ fontSize: '0.95rem', lineHeight: '1.5', whiteSpace: 'pre-wrap', color: 'rgba(255,255,255,0.9)' }}>{matchResult}</p>
-              
-              {!isMatching && matchResult && (
-                <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
-                  <button className="btn hover-glow-purple" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '10px', borderRadius: '12px' }} onClick={handlePass}>
-                    Continue
-                  </button>
-                  <button className="btn-outline" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '10px', borderRadius: '12px', border: '1px solid var(--accent-purple)', color: 'var(--accent-purple)' }} onClick={() => setActiveModal(lastSwipedUser)}>
-                    View Profile
-                  </button>
-                </div>
+              {isMatching ? (
+                <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.7)', fontStyle: 'italic' }}>Analyzing global compatibility models...</p>
+              ) : (
+                <>
+                  <p style={{ fontSize: '0.95rem', lineHeight: '1.5', whiteSpace: 'pre-wrap', color: 'rgba(255,255,255,0.9)' }}>{matchResult}</p>
+                  <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
+                    <button className="btn hover-glow-purple" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '10px', borderRadius: '12px' }} onClick={handlePass}>
+                      Continue
+                    </button>
+                    <button className="btn-outline" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '10px', borderRadius: '12px', border: '1px solid var(--accent-purple)', color: 'var(--accent-purple)' }} onClick={() => setActiveModal(lastSwipedUser)}>
+                      View Profile
+                    </button>
+                  </div>
+                </>
               )}
             </div>
           )}
