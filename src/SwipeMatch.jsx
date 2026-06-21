@@ -131,20 +131,23 @@ export default function SwipeMatch() {
           </div>
 
           {(isMatching || matchResult) && lastSwipedUser && (
-            <div className="animate-fade-in" style={{ marginTop: '24px', width: '100%', padding: '20px', background: 'linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(59, 130, 246, 0.1))', border: '1px solid rgba(157, 78, 221, 0.3)', borderRadius: '16px', boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)' }}>
-              <h4 className="text-gradient-purple" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', fontSize: '1.1rem', fontWeight: '700' }}>
-                <Sparkles size={18} color="var(--accent-purple)" /> AI Synergy Analysis
+            <div className="animate-fade-in" style={{ position: 'absolute', top: '-20px', bottom: '-20px', left: '-20px', right: '-20px', zIndex: 200, padding: '40px', background: 'rgba(15, 20, 30, 0.95)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', border: '1px solid rgba(157, 78, 221, 0.3)', borderRadius: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', boxShadow: '0 0 40px rgba(157, 78, 221, 0.2)' }}>
+              <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--accent-blue), var(--accent-purple))', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '2rem', fontWeight: 'bold', marginBottom: '24px', boxShadow: 'var(--accent-purple-glow)', border: '2px solid rgba(255,255,255,0.1)' }}>
+                {lastSwipedUser.name.charAt(0)}
+              </div>
+              <h4 className="text-gradient-purple" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px', fontSize: '1.4rem', fontWeight: '700' }}>
+                <Sparkles size={22} color="var(--accent-purple)" /> AI Synergy Analysis
               </h4>
               {isMatching ? (
-                <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.7)', fontStyle: 'italic' }}>Analyzing global compatibility models...</p>
+                <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.7)', fontStyle: 'italic', textAlign: 'center' }}>Analyzing global compatibility models...</p>
               ) : (
                 <>
-                  <p style={{ fontSize: '0.95rem', lineHeight: '1.5', whiteSpace: 'pre-wrap', color: 'rgba(255,255,255,0.9)' }}>{matchResult}</p>
-                  <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
-                    <button className="btn hover-glow-purple" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '10px', borderRadius: '12px' }} onClick={handlePass}>
-                      Continue
+                  <p style={{ fontSize: '1.05rem', lineHeight: '1.6', whiteSpace: 'pre-wrap', color: 'rgba(255,255,255,0.9)', textAlign: 'center', marginBottom: '30px' }}>{matchResult}</p>
+                  <div style={{ display: 'flex', gap: '16px', width: '100%', flexDirection: 'column' }}>
+                    <button className="btn hover-glow-purple" style={{ width: '100%', padding: '14px', borderRadius: '12px', fontSize: '1.1rem', cursor: 'pointer' }} onClick={handlePass}>
+                      Continue Swiping
                     </button>
-                    <button className="btn-outline" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '10px', borderRadius: '12px', border: '1px solid var(--accent-purple)', color: 'var(--accent-purple)' }} onClick={() => setActiveModal(lastSwipedUser)}>
+                    <button className="btn-outline" style={{ width: '100%', padding: '14px', borderRadius: '12px', border: '1px solid var(--accent-purple)', color: 'var(--accent-purple)', background: 'transparent', fontSize: '1.1rem', cursor: 'pointer', transition: 'all 0.3s' }} onMouseOver={e => e.currentTarget.style.background = 'rgba(157, 78, 221, 0.1)'} onMouseOut={e => e.currentTarget.style.background = 'transparent'} onClick={() => setActiveModal(lastSwipedUser)}>
                       View Profile
                     </button>
                   </div>
